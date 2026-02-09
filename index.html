@@ -1,231 +1,139 @@
-<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sujung's Page</title>
-
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SJ-Website</title>
   <style>
-    :root{
-      --bg1:#fff7fb;
-      --bg2:#f2fbff;
-      --card:#ffffffcc;
-      --text:#1f2937;
-      --sub:#6b7280;
-      --accent:#ff4d94;
-      --accent2:#6dd6ff;
-      --border:rgba(31,41,55,.10);
-      --shadow: 0 14px 40px rgba(17,24,39,.12);
-      --radius: 22px;
+    body {
+      margin: 0;
+      background: #f2f2f2;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 32px;
+      box-sizing: border-box;
+    }
+    .frame {
+      width: min(1750px, 100%);
+      height: 80vh;
+      max-height: 850px;
+      background: #fff;
+      padding: 24px;
+      box-sizing: border-box;
+      display: flex;
+      gap: 20px;
     }
 
-    *{ box-sizing: border-box; }
-    body{
-      margin:0;
-      font-family: "Pretendard", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
-      color:var(--text);
-      min-height:100vh;
-      background:
-        radial-gradient(900px 420px at 20% 10%, var(--bg2), transparent 60%),
-        radial-gradient(900px 420px at 90% 0%, var(--bg1), transparent 60%),
-        linear-gradient(180deg, #ffffff, #fff);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding: 28px;
+    .profile-box {
+      width: 300px;
+      border: 1px solid  rgb(197, 197, 197);
+      padding: 20px;
+    }
+    .profile-img {
+      width: 290px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 12px;
+      
+      display: block;
+      margin: auto;
     }
 
-    .wrap{
-      width: min(940px, 100%);
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
+    .content-box {
+      flex: 1;
+      border: 1px solid rgb(197, 197, 197);
+
+    }
+    .guestbook h2 { margin: 0 0 12px; }
+
+    .guestbook-form {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      overflow:hidden;
+    .guestbook-form input,
+    .guestbook-form textarea {
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff;
     }
 
-    .hero{
-      padding: 26px 26px 22px;
-      position: relative;
-    }
-    .badge{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.7);
-      font-size: 13px;
-      color: var(--sub);
-    }
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 6px 18px rgba(255,77,148,.25);
+    .guestbook-form textarea { min-height: 90px; resize: vertical; }
+
+    .guestbook-form button {
+      width: 120px;
+      padding: 10px;
+      cursor: pointer;
     }
 
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(28px, 4vw, 40px);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-    .grad{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      background-clip:text;
-      color:transparent;
-    }
-    .lead{
-      margin:0 0 18px;
-      color: var(--sub);
-      line-height: 1.6;
-      font-size: 15px;
+    .guestbook-list {
+      display: grid;
+      gap: 10px;
     }
 
-    .row{
-      display:flex;
-      gap:10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
+    .gb-item {
+      border: 1px solid #ddd;
+      padding: 12px;
+      background: #fff;
     }
-    .btn{
-      cursor:pointer;
-      border:0;
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      transition: transform .08s ease, box-shadow .2s ease, opacity .2s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      user-select:none;
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn.primary{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color:white;
-      box-shadow: 0 12px 28px rgba(255,77,148,.22);
-    }
-    .btn.ghost{
-      background: rgba(255,255,255,.7);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn:hover{ opacity:.92; }
 
-    .mini{
-      padding: 18px;
-      display:grid;
-      gap: 12px;
-    }
-    .tile{
-      padding: 14px 14px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.72);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-    .tile b{ font-size: 14px; }
-    .tile span{ font-size: 13px; color: var(--sub); }
-
-    .footer{
-      margin-top: 14px;
+    .gb-meta {
       font-size: 12px;
-      color: var(--sub);
+      color: #666;
+      margin-bottom: 6px;
     }
-
-    /* mobile */
-    @media (max-width: 860px){
-      .wrap{ grid-template-columns: 1fr; }
-    }
+    .gb-msg { margin: 0; white-space: pre-wrap; }
   </style>
 </head>
-
 <body>
-  <div><img src="IMG_5995.jpeg" style="border-radius:20px; width:300px;"></div>
-  <main class="wrap">
-    <section class="card hero">
-      <div class="badge">
-        <span class="dot"></span>
-        GitHub Pages · 연습용
-      </div>
+  <div class="frame">
+    <div class="profile-box">
+      <img src="./IMG_5995.jpeg" class="profile-img">
+      <h2 class="profile-name">Sujung</h2>
+      <p class="profile-desc">Webpage testing Lab</p>
 
-      <h1>
-        <span class="grad">Sujung's Webpage</span> 👋
-        <br/>깃허브 연습 중
-      </h1>
+    </div>
+    <div class="content-box">
+      <section class="guestbook">
+        <h2>방명록</h2>
 
-      <p class="lead">
-        HTML/CSS 학습 중
-        <br/>Ps, Ai 학습 중
-      </p>
+        <form id="guestbook-form" class="guestbook-form">
+          <input id="gb-name" type="text" maxlength="20" placeholder="이름" required>
+          <textarea id="gb-message" maxlength="200" placeholder="메시지" required></textarea>
+          <button type="submit">등록</button>
+        </form>
 
-      <div class="row">
-        <a class="btn primary" href="#" onclick="alert('click ✨'); return false;">
-          ✨ 버튼 눌러보기
-        </a>
-        <a class="btn ghost" href="https://github.com/sujungww/sj-website" target="_blank" rel="noreferrer">
-          🔗 GitHub 저장소
-        </a>
-      </div>
+        <div id="guestbook-list" class="guestbook-list"></div>
+      </section>
 
-      <div class="footer">
-        Tip: 글자/색 바꾸고 Commit만 하면 사이트도 바로 바뀜.
-      </div>
-    </section>
+    </div>
+  </div>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-    <aside class="card mini">
-      <div class="tile">
-        <div>
-          <b>궁극의 목표</b><br/>
-          <span>웹페이지 완성</span>
-        </div>
-        <span>✅</span>
-      </div>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_I1Fq7WVZISyompqXL2_GmVa5CCUgSaI",
+    authDomain: "sj-guestbook.firebaseapp.com",
+    projectId: "sj-guestbook",
+    storageBucket: "sj-guestbook.firebasestorage.app",
+    messagingSenderId: "918190136782",
+    appId: "1:918190136782:web:f90b654849b826e0545f9f",
+    measurementId: "G-2V5WFP08VE"
+  };
 
-      <div class="tile">
-        <div>
-          <b>다음에 해볼 것</b><br/>
-          <span>사진 넣기 / 배치 바꾸기</span>
-        </div>
-        <span>➡️</span>
-      </div>
-
-      <div class="tile">
-        <div>
-          <b>내가 좋아하는 분위기</b><br/>
-          <span>kitch</span>
-        </div>
-        <span>☕</span>
-      </div>
-
-      <div class="tile">
-        <div>
-          <b>한 줄 메모</b><br/>
-          <span>드가자</span>
-        </div>
-        <span>📝</span>
-      </div>
-    </aside>
-  </main>
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
-
