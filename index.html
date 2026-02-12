@@ -266,7 +266,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebas
 import {
   getFirestore,
   collection, addDoc, serverTimestamp, query, orderBy, onSnapshot,
-  doc, setDoc, updateDoc, increment
+  doc, setDoc, updateDoc, increment, getDoc
 }
 from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
@@ -339,8 +339,10 @@ const heartCountEl = document.getElementById("heart-count");
 const heartDocRef = doc(db, "counters", "hearts");
 
 // 1) 처음에 문서가 없을 수도 있으니 0으로 만들어두기(merge라 안전)
-await setDoc(heartDocRef, { count: 0 }, { merge: true });
-
+const heartSnap = await getDoc(heartDocRef);
+if (!heartSnap.exists()) {
+  await setDoc(heartDocRef, { count: 0 }); // 처음 1번만 생성
+}
 // 2) 실시간으로 카운트 읽어서 화면에 표시
 onSnapshot(heartDocRef, (snap) => {
   const data = snap.data();
