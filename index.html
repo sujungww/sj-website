@@ -15,6 +15,7 @@
       justify-content: center;
       align-items: center;
       padding: 32px;
+      gap: 20px;
     }
 
     .frame {
@@ -23,19 +24,30 @@
       background: #fff;
       padding: 16px;
 
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 3fr 1fr;
       display: grid;
       gap: 20px;
+
+      overflow: hidden;
     }
 
     .main-area{
       border: 1px solid rgb(197, 197, 197);
       padding: 16px;
+
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      row-gap: 16px;
+
+      align-content: start;
     }
     .guest-area{
       border: 1px solid rgb(197, 197, 197);
       padding: 16px;
-      overflow: auto;
+      overflow: hidden;
+
+      display: flex;
+      min-height: 0;
     }
     @media (max-width: 768px) {
       body { padding: 16px; align-items: flex-start; }
@@ -54,6 +66,8 @@
       border: 1px solid rgb(197,197,197);
       padding: 20px;
       margin: 0;
+
+      grid-column: 1;
     }
 
     .timetable-box{
@@ -63,6 +77,8 @@
       padding: 20px;
       margin: 0;
       text-align: center;
+
+      grid-column: 1;
     }
 
     .profile-img {
@@ -77,17 +93,21 @@
 
     .timetable-img{
       width: 100%;
+      max-height: 260px;
       height: auto;
       object-fit: contain;
       border-radius: 12px;
       display: block;
       margin: 0 0 14px;
     }
+    .introduction-box{ grid-column:2; }
 
     .links-box{
       border: 1px solid rgb(197, 197, 197);
       padding: 16px;
       margin-top: 16px;
+
+      grid-column: 2;
     }
     .links-box h3{
       margin: 0 0 12px;
@@ -122,6 +142,19 @@
       transform: scale(0.92);
       background:#eaeaea;
     }
+    .memo-box{
+      padding: 14px;                 /* 16~20 → 14 */
+    }
+    .memo-box textarea{
+      width: 100%;
+      min-height: 220px;
+      resize: vertical;
+      border: 1px solid #ccc;
+      padding: 12px;
+      font-family: inherit;
+      border-radius: 10px;
+      background: #fff;
+    }
 
     .content-box {
       flex: 1;
@@ -129,6 +162,14 @@
       padding: 20px;
       box-sizing: border-box;
       background-image: url(./8921B8CA-8C79-4843-904E-16DF46D2E9EB_1_201_a.jpeg);
+
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0;
+
+      height: 600px;
     }
 
     .guestbook-form {
@@ -159,6 +200,12 @@
     .guestbook-list {
       display: grid;
       gap: 10px;
+
+      flex: 1;
+      overflow-y: auto;
+      gap: 10px;
+      min-height: 0;
+      padding-right: 6px;
     }
 
     .gb-item {
@@ -186,6 +233,8 @@
       margin: 0;
       font-size: 16px;
       margin-right: auto;
+
+      grid-column: 2;
     }
 
     #heart-btn{
@@ -214,24 +263,18 @@
 <div class="frame">
   <section class="main-area">
     <div class="profile-box">
+
       <img src="./IMG_5995.jpeg" class="profile-img">
       <h2>Sujung</h2>
       <p>Webpage testing Lab</p>
+
       <section class="heart-box">
         <h3>하트 눌러보세여~</h3>
         <button id="heart-btn" type="button" aria-label="heart">❤️</button>
         <span id="heart-count">0</span>
       </section>
+
     </div>
-
-    <div class="timetable-box">
-      <img src="./IMG_6150.jpeg" class="timetable-img">
-    </div>
-
-    <section class="introduction-box">
-      <p>안녕하세여 그냥 만들어보고이써염 무조건적인 칭찬과 지지 부탁드립니당 훈수 등등 안받음 😆😆</p>
-    </section>
-
 
     <section class="links-box">
       <div class="links-grid">
@@ -241,6 +284,16 @@
         <a class="link-btn" href="https://blog.naver.com/sujung1ch" target="_blank" rel="noopener">Blog</a>
       </div>
     </section>
+
+    <div class="timetable-box">
+      <img src="./IMG_6150.jpeg" class="timetable-img">
+    </div>
+
+    <section class="introduction-box">
+      <textarea id="memo" placeholder="여기에 메모해두기..."></textarea>
+    </section>
+
+
 
   </section>
 
