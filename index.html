@@ -170,32 +170,37 @@
       color: #666;
       margin-bottom: 6px;
     }
-    .like-box{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-top:16px;
+    .heart-box{
+      border: 1px solid rgb(197,197,197);
+      padding: 16px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .heart-box h3{
+      margin: 0;
+      font-size: 16px;
+      margin-right: auto;
     }
 
-    #like-btn{
-      border:1px solid #ccc;
-      background:#fff;
-      padding:10px 14px;
-      cursor:pointer;
-      border-radius:10px;
-      transition:transform .12s ease, background .12s ease;
-      box-shadow:0 2px 0 #ccc;
+    #heart-btn{
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 18px;
+      transition: transform 120ms ease, box-shadow 120ms ease;
     }
-
-    #like-btn:hover{ background:#f5f5f5; }
-    #like-btn:active{
-      transform:translateY(2px);
-      box-shadow:0 0 0 #ccc;
+    #heart-btn:active{
+      transform: scale(0.92);
     }
-
-    #like-count{
-      font-size:16px;
-      font-weight:600;
+    #heart-count{
+      font-weight: 700;
+      font-size: 16px;
+      min-width: 24px;
+      text-align: left;
     }
   </style>
 </head>
@@ -218,9 +223,10 @@
       <p>안녕하세여 그냥 만들어보고이써염 무조건적인 칭찬과 지지 부탁드립니당 훈수 등등 안받음 😆😆</p>
     </section>
 
-    <section class="like-box">
-      <button id="like-btn" type="button">💗 하트</button>
-      <span id="like-count">0</span>
+    <section class="heart-box">
+      <h3>하트</h3>
+      <button id="heart-btn" type="button" aria-label="heart">❤️</button>
+      <span id="heart-count">0</span>
     </section>
 
     <section class="links-box">
