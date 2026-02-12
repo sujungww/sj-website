@@ -9,7 +9,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: #f2f2f2;
+      background: url(./background.jpg);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -19,8 +19,7 @@
 
     .frame {
       width: min(1750px, 100%);
-      height: 80vh;
-      max-height: 850px;
+      min-height: calc(100vh - 64px);
       background: #fff;
       padding: 16px;
 
@@ -129,6 +128,7 @@
       border: 1px solid rgb(197,197,197);
       padding: 20px;
       box-sizing: border-box;
+      background-image: url(./8921B8CA-8C79-4843-904E-16DF46D2E9EB_1_201_a.jpeg);
     }
 
     .guestbook-form {
@@ -142,6 +142,7 @@
       border: 1px solid #ccc;
       padding: 10px;
       font-size: 14px;
+      
       font-family: inherit;
     }
 
@@ -167,8 +168,11 @@
 
     .gb-meta {
       font-size: 12px;
-      color: #666;
+      color: #fff;
       margin-bottom: 6px;
+    }
+    .gb-message{
+      color:#fff;
     }
     .heart-box{
       border: 1px solid rgb(197,197,197);
@@ -213,6 +217,11 @@
       <img src="./IMG_5995.jpeg" class="profile-img">
       <h2>Sujung</h2>
       <p>Webpage testing Lab</p>
+      <section class="heart-box">
+        <h3>하트 눌러보세여~</h3>
+        <button id="heart-btn" type="button" aria-label="heart">❤️</button>
+        <span id="heart-count">0</span>
+      </section>
     </div>
 
     <div class="timetable-box">
@@ -223,11 +232,6 @@
       <p>안녕하세여 그냥 만들어보고이써염 무조건적인 칭찬과 지지 부탁드립니당 훈수 등등 안받음 😆😆</p>
     </section>
 
-    <section class="heart-box">
-      <h3>하트</h3>
-      <button id="heart-btn" type="button" aria-label="heart">❤️</button>
-      <span id="heart-count">0</span>
-    </section>
 
     <section class="links-box">
       <div class="links-grid">
@@ -243,12 +247,12 @@
   <section class="guest-area">
     <div class="content-box">
   
-      <h2>방명록</h2>
+      <h2>무조건 선플만 😍</h2>
   
       <form id="guestbook-form" class="guestbook-form">
-        <input id="gb-name" type="text" maxlength="20" placeholder="이름" required>
-        <textarea id="gb-message" maxlength="200" placeholder="메시지" required></textarea>
-        <button type="submit">등록</button>
+        <input id="gb-name" type="text" maxlength="20" placeholder="제 이름은여~" required>
+        <textarea id="gb-message" maxlength="200" placeholder="수정이에게 할 말!" required></textarea>
+        <button type="submit">역사에 기록 남기기</button>
       </form>
   
       <div id="guestbook-list" class="guestbook-list"></div>
@@ -316,7 +320,7 @@ onSnapshot(q, (snapshot) => {
     item.className = "gb-item";
     item.innerHTML = `
       <div class="gb-meta">${escapeHtml(data.name)}</div>
-      <div>${escapeHtml(data.message)}</div>
+      <div class="gb-message">${escapeHtml(data.message)}</div>
     `;
     list.appendChild(item);
   });
