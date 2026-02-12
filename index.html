@@ -257,8 +257,11 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot,
-         doc, setDoc, updateDoc, increment } 
+import {
+  getFirestore,
+  collection, addDoc, serverTimestamp, query, orderBy, onSnapshot,
+  doc, setDoc, updateDoc, increment
+}
 from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -320,25 +323,33 @@ function escapeHtml(str){
     .replaceAll(">","&gt;");
 }
 
-// ===== 하트(좋아요) 카운터 =====
-const likeBtn = document.getElementById("like-btn");
-const likeCountEl = document.getElementById("like-count");
+// =======================
+// ❤️ HEART COUNTER (GLOBAL)
+// =======================
+const heartBtn = document.getElementById("heart-btn");
+const heartCountEl = document.getElementById("heart-count");
 
-// likes 컬렉션의 counter 문서 하나로 전역 카운트 관리
-const likeRef = doc(db, "likes", "counter");
+// 카운터 문서 위치(하나로 고정)
+const heartDocRef = doc(db, "counters", "hearts");
 
-// 1) 문서가 없을 수도 있으니 초기값 만들어두기(있으면 덮어쓰지 않음)
-await setDoc(likeRef, { count: 0 }, { merge: true });
+// 1) 처음에 문서가 없을 수도 있으니 0으로 만들어두기(merge라 안전)
+await setDoc(heartDocRef, { count: 0 }, { merge: true });
 
-// 2) 실시간으로 숫자 표시
-onSnapshot(likeRef, (snap) => {
+// 2) 실시간으로 카운트 읽어서 화면에 표시
+onSnapshot(heartDocRef, (snap) => {
   const data = snap.data();
-  likeCountEl.textContent = data?.count ?? 0;
+  heartCountEl.textContent = data?.count ?? 0;
 });
 
-// 3) 클릭하면 +1 (원자적 증가)
-likeBtn.addEventListener("click", async () => {
-  await updateDoc(likeRef, { count: increment(1) });
+// 3) 버튼 누르면 count +1 (원자적 증가)
+heartBtn.addEventListener("click", async () => {
+  // 빠르게 연타해도 increment는 안전하게 누적됨
+  await updateDoc(heartDocRef, { count: increment(1) });
+
+  // 눌렀을 때 살짝 튕기는 모션(옵션)
+  heartBtn.classList.remove("pop");
+  void heartBtn.offsetWidth;
+  heartBtn.classList.add("pop");
 });
 </script>
 
