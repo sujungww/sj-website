@@ -6,6 +6,7 @@
   <title>SJ-Website</title>
 
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       background: #f2f2f2;
@@ -14,7 +15,6 @@
       justify-content: center;
       align-items: center;
       padding: 32px;
-      box-sizing: border-box;
     }
 
     .frame {
@@ -22,25 +22,106 @@
       height: 80vh;
       max-height: 850px;
       background: #fff;
-      padding: 24px;
-      box-sizing: border-box;
-      display: flex;
+      padding: 16px;
+
+      grid-template-columns: 2fr 1fr;
+      display: grid;
       gap: 20px;
     }
 
+    .main-area{
+      border: 1px solid rgb(197, 197, 197);
+      padding: 16px;
+    }
+    .guest-area{
+      border: 1px solid rgb(197, 197, 197);
+      padding: 16px;
+      overflow: auto;
+    }
+    @media (max-width: 768px) {
+      body { padding: 16px; align-items: flex-start; }
+
+      .frame{
+        height: auto;
+        max-height: none;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+    }
+
     .profile-box {
-      width: 300px;
+      width: 100%;
+      max-width: 340px;
       border: 1px solid rgb(197,197,197);
       padding: 20px;
+      margin: 0;
+    }
+
+    .timetable-box{
+      width: 100%;
+      max-width: 340px;
+      border: 1px solid rgb(197,197,197);
+      padding: 20px;
+      margin: 0;
+      text-align: center;
     }
 
     .profile-img {
-      width: 290px;
-      height: 240px;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       border-radius: 12px;
       display: block;
-      margin: auto;
+      margin: 0 auto 14px;
+    }
+
+    .timetable-img{
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+      margin: 0 0 14px;
+    }
+
+    .links-box{
+      border: 1px solid rgb(197, 197, 197);
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .links-box h3{
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+    .links-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .link-btn{
+      display: block;
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-decoration: none;
+      color: #111;
+      background: #fff;
+
+      width: 100px;
+      margin: 0 auto;
+      text-align: center;
+
+      transition: all 0.15s ease;
+    }
+
+    .link-btn:hover{
+      background:#f5f5f5;
+    }
+
+    .link-btn:active{
+      transform: scale(0.92);
+      background:#eaeaea;
     }
 
     .content-box {
@@ -89,38 +170,95 @@
       color: #666;
       margin-bottom: 6px;
     }
+    .like-box{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    #like-btn{
+      border:1px solid #ccc;
+      background:#fff;
+      padding:10px 14px;
+      cursor:pointer;
+      border-radius:10px;
+      transition:transform .12s ease, background .12s ease;
+      box-shadow:0 2px 0 #ccc;
+    }
+
+    #like-btn:hover{ background:#f5f5f5; }
+    #like-btn:active{
+      transform:translateY(2px);
+      box-shadow:0 0 0 #ccc;
+    }
+
+    #like-count{
+      font-size:16px;
+      font-weight:600;
+    }
   </style>
 </head>
 
 <body>
 
 <div class="frame">
+  <section class="main-area">
+    <div class="profile-box">
+      <img src="./IMG_5995.jpeg" class="profile-img">
+      <h2>Sujung</h2>
+      <p>Webpage testing Lab</p>
+    </div>
 
-  <div class="profile-box">
-    <img src="./IMG_5995.jpeg" class="profile-img">
-    <h2>Sujung</h2>
-    <p>Webpage testing Lab</p>
-  </div>
+    <div class="timetable-box">
+      <img src="./IMG_6150.jpeg" class="timetable-img">
+    </div>
 
-  <div class="content-box">
+    <section class="introduction-box">
+      <p>안녕하세여 그냥 만들어보고이써염 무조건적인 칭찬과 지지 부탁드립니당 훈수 등등 안받음 😆😆</p>
+    </section>
 
-    <h2>방명록</h2>
+    <section class="like-box">
+      <button id="like-btn" type="button">💗 하트</button>
+      <span id="like-count">0</span>
+    </section>
 
-    <form id="guestbook-form" class="guestbook-form">
-      <input id="gb-name" type="text" maxlength="20" placeholder="이름" required>
-      <textarea id="gb-message" maxlength="200" placeholder="메시지" required></textarea>
-      <button type="submit">등록</button>
-    </form>
+    <section class="links-box">
+      <div class="links-grid">
+        <a class="link-btn" href="https://github.com/sujungww" target="_blank" rel="noopener">GitHub</a>
+        <a class="link-btn" href="https://music.apple.com/profile/muniverse" target="_blank" rel="noopener">AppleMusic</a>
+        <a class="link-btn" href="https://www.instagram.com/enyvarse?igsh=Z2tjZHpwZXlqZnBh&utm_source=qr" target="_blank" rel="noopener">Insta</a>
+        <a class="link-btn" href="https://blog.naver.com/sujung1ch" target="_blank" rel="noopener">Blog</a>
+      </div>
+    </section>
 
-    <div id="guestbook-list" class="guestbook-list"></div>
+  </section>
 
-  </div>
+  <section class="guest-area">
+    <div class="content-box">
+  
+      <h2>방명록</h2>
+  
+      <form id="guestbook-form" class="guestbook-form">
+        <input id="gb-name" type="text" maxlength="20" placeholder="이름" required>
+        <textarea id="gb-message" maxlength="200" placeholder="메시지" required></textarea>
+        <button type="submit">등록</button>
+      </form>
+  
+      <div id="guestbook-list" class="guestbook-list"></div>
+  
+    </div>
+
+  </section>
+
+
 
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } 
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot,
+         doc, setDoc, updateDoc, increment } 
 from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -181,6 +319,27 @@ function escapeHtml(str){
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;");
 }
+
+// ===== 하트(좋아요) 카운터 =====
+const likeBtn = document.getElementById("like-btn");
+const likeCountEl = document.getElementById("like-count");
+
+// likes 컬렉션의 counter 문서 하나로 전역 카운트 관리
+const likeRef = doc(db, "likes", "counter");
+
+// 1) 문서가 없을 수도 있으니 초기값 만들어두기(있으면 덮어쓰지 않음)
+await setDoc(likeRef, { count: 0 }, { merge: true });
+
+// 2) 실시간으로 숫자 표시
+onSnapshot(likeRef, (snap) => {
+  const data = snap.data();
+  likeCountEl.textContent = data?.count ?? 0;
+});
+
+// 3) 클릭하면 +1 (원자적 증가)
+likeBtn.addEventListener("click", async () => {
+  await updateDoc(likeRef, { count: increment(1) });
+});
 </script>
 
 </body>
